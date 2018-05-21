@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Social Pro",
+  "version": "0.2",
+  "browser_action": {
+    "default_icon": "icon.png"
+   },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}
