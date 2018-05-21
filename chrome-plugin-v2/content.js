@@ -1,14 +1,23 @@
-var url = window.location.href
+var socialProUrl = window.location.href
 
 setTimeout(function(){
-  if (url.indexOf('https://medium') !== -1) {
-    if (url.indexOf('?' !== -1)) {
-      url = url.split("?")[0]
+  if (socialProUrl.indexOf('https://medium') !== -1) {
+    if (socialProUrl.indexOf('?' !== -1)) {
+      socialProUrl = socialProUrl.split("?")[0]
     }
-    var post = socialProStripTags((document.getElementsByClassName('graf')[0].innerHTML).replace(/&nbsp/g, ' ')) + ' \n\n' + url
+    var title = document.getElementsByClassName('graf')[0].innerHTML
+    // if (title.indexOf('<img' !== -1)) {
+    //   //title = document.getElementsByClassName('graf')[1].innerHTML
+    //   title = socialProUrl.split("/")
+    //   title = title[title.length - 1]
+    //   title = title.split("-")
+    //   title.splice(-1,1)
+    //   title = socialProCapitalizeFirstLetter(title.join(' '))
+    // }
+    var post = socialProStripTags(title.replace(/&nbsp/g, ' ')) + ' \n\n' + socialProUrl
     console.log(post)
     socialProCopyToClipboard(post)
-  } else if (url.indexOf('https://www.cssdesignawards.com/') !== -1) {
+  } else if (socialProUrl.indexOf('https://www.cssdesignawards.com/') !== -1) {
     var post = '#inspiration' + '\n\n' + document.getElementsByClassName("single-website__thumbnail")[0].href
     console.log(post)
     socialProCopyToClipboard(post)
@@ -28,4 +37,8 @@ function socialProStripTags(html)
    var tmp = document.createElement("DIV")
    tmp.innerHTML = html
    return tmp.textContent || tmp.innerText || ""
+}
+
+function socialProCapitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
